@@ -16,6 +16,8 @@ import ReactFlagsSelect from "react-flags-select";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
+
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -42,11 +44,11 @@ const Header = () => {
 
     const [select, setSelect] = useState(localStorage.getItem("language") || "SA");
     const onSelect = (code) => {
-     
-        const languageCode = code === "SA" ? "ar" : code;  
+
+        const languageCode = code === "SA" ? "ar" : code;
         i18n.changeLanguage(languageCode); // Change language using i18n
-        localStorage.setItem("language", languageCode);  
-        setSelect(code);  
+        localStorage.setItem("language", languageCode);
+        setSelect(code);
 
         // Set text direction correctly based on language
         if (languageCode === "ar") {
@@ -121,7 +123,7 @@ const Header = () => {
                                 <div>
                                     <ReactFlagsSelect
                                         className="countrybtn"
-                                        
+
                                         selected={select}
                                         onSelect={onSelect}
                                         countries={["GB", "SA"]}  // GB for English, SA for Arabic
@@ -152,18 +154,18 @@ const Header = () => {
                             {t("LOGO")}
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                            <Button
+                            <Link to='/' style={{"textDecoration":"none"}}><Button
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: "white", display: "block" }}
                             >
                                 {t('Home')}
-                            </Button>
-                            <Button
+                            </Button></Link>
+                            <Link to="user" style={{"textDecoration":"none"}}><Button
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: "white", display: "block" }}
+                                sx={{ my: 2, color: "white", display: "block"}}
                             >
                                 {t("About")}
-                            </Button>
+                            </Button></Link>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', padding: '10px', color: "white" }}>
                                 <ReactFlagsSelect
                                     className="custom-flags-dropdown countrybtn"

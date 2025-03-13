@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Container, Grid, Card, CardMedia, CardContent, Typography, Pagination, Box } from "@mui/material";
+ 
 
 const products = [
    
@@ -84,6 +85,8 @@ const Home = () => {
   };
 
   return (
+    <>
+ 
     <Container sx={{ py: 4 }}>
       <Grid container spacing={4}>
         {filteredProducts.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((product) => (
@@ -107,6 +110,8 @@ const Home = () => {
         <Pagination count={Math.ceil(filteredProducts.length / itemsPerPage)} page={page} onChange={handlePageChange} color="primary" />
       </Box>
     </Container>
+    </>
+     
   );
 };
 
